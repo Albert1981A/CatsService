@@ -1,3 +1,32 @@
-.CatList {
-	
+.catImage {
+    width: 60px;
+    height: 60px;
+    border: 1.5px solid white;
+    margin: 5px;
 }
+
+.CatList table {
+    margin: auto;
+}
+
+.CatList table, th, td {
+    border: 1px solid blue;
+}
+
+.CatList tr:nth-child(even) {
+    background-color: dodgerblue;
+}
+
+.CatList tr:nth-child(odd) {
+    background-color: rgb(1, 76, 150);
+}
+
+.CatList th {
+    background-color: rgb(1, 56, 56);
+}
+
+.CatList div {
+    height: 80%;
+    overflow: auto;
+}
+

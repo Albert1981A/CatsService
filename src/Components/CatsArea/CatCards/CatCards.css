@@ -1,0 +1,6 @@
+.CatCards {
+	
+}
+.CatCards > h2:nth-child(2){
+    margin-left: auto;
+}
