@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from "react-router-dom";
+import AddCat from "../../CatsArea/addCat/addCat";
 import CatCards from "../../CatsArea/CatCards/CatCards";
 import CatDetails from "../../CatsArea/CatDetails/CatDetails";
 import CatList from "../../CatsArea/CatList/CatList";
@@ -15,6 +16,7 @@ function Routing(): JSX.Element {
                 <Route path="/cats" component={CatList} exact />
                 <Route path="/cats-2" component={CatCards} exact />
                 <Route path="/cats-2/details/:id" component={CatDetails} exact />
+                <Route path="/cats-2/addCat" component={AddCat} exact />
                 <Route path="/about" component={About} exact />
                 <Redirect from="/" to="/home" exact/>
                 <Route component={Page404}/> {/* Last */}

@@ -32,7 +32,7 @@ class CatCards extends Component<{}, CatCardsState> {
         return (
             <div className="CatCards">
                 <h2>Our list of cats for adoption</h2>
-                <h2>Add Cat <button>➕</button></h2>
+                <h2>Add Cat <NavLink to="/cats-2/addCat" exact>➕</NavLink></h2>
 
                 {this.state.cats.map(c => <Card cat={c} />)}
                 

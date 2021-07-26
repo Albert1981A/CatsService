@@ -1,0 +1,26 @@
+
+.addCat {
+}
+
+.addCat input , .addCat button{
+    
+    width: 250px;
+    height: 30px;
+    box-sizing: border-box;
+
+}
+
+.addCat button{
+    margin: 10px;
+    padding: 10px;
+}
+
+.addCat span{
+    font-size: small;
+    color:tomato;
+}
+
+.addCat > form{
+    text-align: left;
+    align-items: flex-start;
+}

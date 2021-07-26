@@ -27,7 +27,7 @@ class CatDetails extends Component<CatDetailsProps, CatDetailsState> {
 
     public async componentDidMount() {
         try {
-            const id = this.props.match.params.id;    //https://raw.githubusercontent.com/KobiShashs/Caas-Resources/master/cat-single.json
+            const id = this.props.match.params.id;
             const response = await axios.get<CatModel>("https://raw.githubusercontent.com/KobiShashs/Caas-Resources/master/cat-single.json") //+id
             this.setState({ cat: response.data });
         } catch (err) {
