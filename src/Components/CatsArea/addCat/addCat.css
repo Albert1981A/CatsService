@@ -1,13 +1,7 @@
-
-.addCat {
-}
-
 .addCat input , .addCat button{
-    
     width: 250px;
     height: 30px;
     box-sizing: border-box;
-
 }
 
 .addCat button{

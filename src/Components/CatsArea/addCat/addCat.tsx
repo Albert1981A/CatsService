@@ -8,6 +8,9 @@ import { FormControl } from '@material-ui/core';
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import globals from "../../../Services/Globals";
+import store from "../../../Redux/Store";
+import { catsAddedAction } from "../../../Redux/CatsState";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,8 +44,9 @@ function AddCat(): JSX.Element {
             formData.append("color", cat.color);
             formData.append("birthday", cat.birthday.toString());
             formData.append("image", cat.image.item(0));
-            // const response = await axios.post<CatModel>(globals.urls.kittens, formData);
-            // const added = response.data;
+            const response = await axios.post<CatModel>(globals.urls.cats, formData);
+            const added = response.data;
+            store.dispatch(catsAddedAction(added));
             alert("Cat has been added");
             history.push("/cats-2")
         } catch (err) {
@@ -99,37 +103,49 @@ function AddCat(): JSX.Element {
                 <br />
                 <br />
 
-                <label>Color: &nbsp;</label>
+                {/* <label>Color: &nbsp;</label>
                 <input type="text" name="color" {...register("color", { required: true })} />
+                <br />
+                {errors.color && <span>Missing color</span>}
+                <br />
+                <br /> */}
+
+                <label>Color: &nbsp;</label>
+                <select name="color" {...register("color", { required: true })}>
+                    <option value="" disabled selected>Choose color</option>
+                    <option value="BROWN">Brown</option>
+                    <option value="GRAY">Gray</option>
+                    <option value="REDDISH">Reddish</option>
+                </select>
                 <br />
                 {errors.color && <span>Missing color</span>}
                 <br />
                 <br />
 
-                <label>Birthday: &nbsp;</label>
-                <input type="date" name="birthday" {...register("birthday", { required: true })} />
-                <br />
-                {errors.birthday && <span>Missing birthday</span>}
-                <br />
-                <br />
+                    <label>Birthday: &nbsp;</label>
+                    <input type="date" name="birthday" {...register("birthday", { required: true })} />
+                    <br />
+                    {errors.birthday && <span>Missing birthday</span>}
+                    <br />
+                    <br />
 
-                <label>Image: &nbsp;</label>
-                <input type="file" name="image" {...register("image", { required: true })} />
-                <br />
-                {errors.image && <span>Missing image</span>}
-                <br />
-                <br />
+                    <label>Image: &nbsp;</label>
+                    <input type="file" name="image" {...register("image", { required: true })} />
+                    <br />
+                    {errors.image && <span>Missing image</span>}
+                    <br />
+                    <br />
 
-                <button>Add</button>
+                    <button>Add</button>
 
             </form>
-            <br />
+                <br />
 
-            <NavLink to="/cats-2" exact>Go Back</NavLink>
+                <NavLink to="/cats-2" exact>Go Back</NavLink>
 
 
         </div>
-    );
+            );
 }
 
-export default AddCat;
+            export default AddCat;

@@ -2,6 +2,8 @@ import axios from "axios";
 import { Component } from "react";
 import { NavLink, RouteComponentProps } from "react-router-dom";
 import CatModel from "../../../Models/CatModel";
+import store from "../../../Redux/Store";
+import globals from "../../../Services/Globals";
 import "./CatDetails.css";
 
 interface RouteParam {
@@ -27,9 +29,10 @@ class CatDetails extends Component<CatDetailsProps, CatDetailsState> {
 
     public async componentDidMount() {
         try {
-            const id = this.props.match.params.id;
-            const response = await axios.get<CatModel>("https://raw.githubusercontent.com/KobiShashs/Caas-Resources/master/cat-single.json") //+id
-            this.setState({ cat: response.data });
+            const id = +this.props.match.params.id;
+            const cat = store.getState().catState.cats.find((p) => p.id === id);
+            // const response = await axios.get<CatModel>(globals.urls.cats + id); -----> Not Needed!!!
+            this.setState({ cat });
         } catch (err) {
             alert(err.message);
         }
@@ -40,12 +43,12 @@ class CatDetails extends Component<CatDetailsProps, CatDetailsState> {
             <div className="CatDetails Box">
                 <h2>Cat details</h2>
                 {
-                this.state.cat &&
+                    this.state.cat &&
                     <>			<h2>Details</h2>
                         <h3>Name: {this.state.cat.name}</h3>
                         <h3>Weight: {this.state.cat.weight}</h3>
                         <h3>Color: {this.state.cat.color}</h3>
-                        <img src={this.state.cat.image} />
+                        <img src={globals.urls.cats + "images/" + this.state.cat.image} />
                         <br /><br />
                         <NavLink to="/cats-2" exact>Back</NavLink>
                     </>
@@ -56,3 +59,5 @@ class CatDetails extends Component<CatDetailsProps, CatDetailsState> {
 }
 
 export default CatDetails;
+
+// 00:38
